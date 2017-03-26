@@ -50,7 +50,7 @@ Temperatura.prototype.mostrar = function(){
 function calculate() {
   var result;
   var temp = original.value;
-  var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
+  var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcCkK])\s*(?:to)?\s*([fFcCkK])/;
 
   var m = temp.match(regexp);
 
