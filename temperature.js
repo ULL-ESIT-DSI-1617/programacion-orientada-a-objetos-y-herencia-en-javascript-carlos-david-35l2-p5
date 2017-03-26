@@ -17,8 +17,8 @@ Medida.prototype.get_tipo_origen = function(){return this.tipo_origen_;}
 Medida.prototype.get_tipo_destino = function(){return this.tipo_destino_;}
 
 Medida.prototype.set_valor = function(valor){this.valor_ = valor;}
-Medida.prototype.set_tipo_origen = function(tipo){this.tipo_origen_ = tipo_origen;}
-Medida.prototype.set_tipo_destino = function(tipo){this.tipo_destino_ = tipo_destino;}
+Medida.prototype.set_tipo_origen = function(tipo_origen){this.tipo_origen_ = tipo_origen;}
+Medida.prototype.set_tipo_destino = function(tipo_destino){this.tipo_destino_ = tipo_destino;}
 
 //Convertir Celsius a Farenheit
 Temperatura.prototype.convertirC_F = function(){
@@ -51,40 +51,39 @@ Temperatura.prototype.mostrar = function(){
 }
 
 function calculate() {
-  var result;
+  var result = new Temperatura();
   var temp = original.value;
   var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcCkK])\s*(?:to)?\s*([fFcCkK])/;
 
   var m = temp.match(regexp);
-
   if (m) {
     var t = new Temperatura()
 
-    t.set_valor = (parseFloat(m[1]));
-    t.set_tipo_origen = m[2];
-    t.set_tipo_destino = m[3];
+    t.set_valor(parseFloat(m[1]));
+    t.set_tipo_origen(m[2]);
+    t.set_tipo_destino(m[3]);
 
-    if ((t.get_tipo_origen() == 'c' || t.get_tipo_origen() == 'C') && ((t.get_tipo_destino() == 'f' || t.get_tipo_destino() == 'F')) {
+    if ((t.get_tipo_origen() == 'c' || t.get_tipo_origen() == 'C') && ((t.get_tipo_destino() == 'f' || t.get_tipo_destino() == 'F'))) {
       result.set_valor(t.convertirC_F());
       result.set_tipo_destino("F");
     }
-    else if ((t.get_tipo_origen() == 'c' || t.get_tipo_origen() == 'C') && ((t.get_tipo_destino() == 'k' || t.get_tipo_destino() == 'K')) {
+    else if ((t.get_tipo_origen() == 'c' || t.get_tipo_origen() == 'C') && ((t.get_tipo_destino() == 'k' || t.get_tipo_destino() == 'K'))) {
       result.set_valor(t.convertirC_K());
       result.set_tipo_destino("K");
     }
-    else if ((t.get_tipo_origen() == 'f' || t.get_tipo_origen() == 'F') && ((t.get_tipo_destino() == 'c' || t.get_tipo_destino() == 'C')) {
+    else if ((t.get_tipo_origen() == 'f' || t.get_tipo_origen() == 'F') && ((t.get_tipo_destino() == 'c' || t.get_tipo_destino() == 'C'))) {
       result.set_valor(t.convertirF_C());
       result.set_tipo_destino("C");
     }
-    else if ((t.get_tipo_origen() == 'f' || t.get_tipo_origen() == 'F') && ((t.get_tipo_destino() == 'k' || t.get_tipo_destino() == 'K')) {
+    else if ((t.get_tipo_origen() == 'f' || t.get_tipo_origen() == 'F') && ((t.get_tipo_destino() == 'k' || t.get_tipo_destino() == 'K'))) {
       result.set_valor(t.convertirF_K());
       result.set_tipo_destino("K");
     }
-    else if ((t.get_tipo_origen() == 'k' || t.get_tipo_origen() == 'K') && ((t.get_tipo_destino() == 'c' || t.get_tipo_destino() == 'C')) {
+    else if ((t.get_tipo_origen() == 'k' || t.get_tipo_origen() == 'K') && ((t.get_tipo_destino() == 'c' || t.get_tipo_destino() == 'C'))) {
       result.set_valor(t.convertirK_C());
       result.set_tipo_destino("C");
     }
-    else if ((t.get_tipo_origen() == 'k' || t.get_tipo_origen() == 'K') && ((t.get_tipo_destino() == 'f' || t.get_tipo_destino() == 'F')) {
+    else if ((t.get_tipo_origen() == 'k' || t.get_tipo_origen() == 'K') && ((t.get_tipo_destino() == 'f' || t.get_tipo_destino() == 'F'))) {
       result.set_valor(t.convertirK_F());
       result.set_tipo_destino("F");
     }
