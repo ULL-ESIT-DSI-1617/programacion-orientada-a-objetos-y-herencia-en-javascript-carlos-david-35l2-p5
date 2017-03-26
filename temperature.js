@@ -11,6 +11,14 @@ function Temperatura (valor, tipo){
 
 Temperatura.prototype = new Medida();
 
+Temperatura.prototype.convertirF = function(){
+  return ((this.get_valor()*9)/5)+32;
+}
+
+Temperatura.prototype.convertirC = function(){
+  return ((this.get_valor()-32)*5)/9;
+}
+
 function calculate() {
   var result;
   var temp = original.value;
