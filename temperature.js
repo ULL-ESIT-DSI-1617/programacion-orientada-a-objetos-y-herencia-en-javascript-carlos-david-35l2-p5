@@ -1,21 +1,24 @@
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
-function Medida (valor, tipo) {
+function Medida (valor, tipo_origen, tipo_destino) {
   this.valor_ = valor;
-  this.tipo_ = tipo;
+  this.tipo_origen_ = tipo_origen;
+  this.tipo_destino_ = tipo_destino;
 }
 
-function Temperatura (valor, tipo){
-  Medida.call(this, valor, tipo);
+function Temperatura (valor, tipo_origen, tipo_destino){
+  Medida.call(this, valor, tipo_origen, tipo_destino);
 }
 
 Temperatura.prototype = new Medida();
 
 Medida.prototype.get_valor = function(){return this.valor_;}
-Medida.prototype.get_tipo = function(){return this.tipo_;}
+Medida.prototype.get_tipo_origen = function(){return this.tipo_origen_;}
+Medida.prototype.get_tipo_destino = function(){return this.tipo_destino_;}
 
 Medida.prototype.set_valor = function(valor){this.valor_ = valor;}
-Medida.prototype.set_tipo = function(tipo){this.tipo_ = tipo;}
+Medida.prototype.set_tipo_origen = function(tipo){this.tipo_origen_ = tipo_origen;}
+Medida.prototype.set_tipo_destino = function(tipo){this.tipo_destino_ = tipo_destino;}
 
 //Convertir Celsius a Farenheit
 Temperatura.prototype.convertirC_F = function(){
@@ -43,7 +46,7 @@ Temperatura.prototype.convertirK_F = function(){
 }
 
 Temperatura.prototype.mostrar = function(){
-  var result = this.get_valor() + " " + this.get_tipo();
+  var result = this.get_valor() + " " + this.get_tipo_destino();
   return result;
 }
 
@@ -55,20 +58,40 @@ function calculate() {
   var m = temp.match(regexp);
 
   if (m) {
-    var num = m[1];
-    var type = m[2];
-    num = parseFloat(num);
-    if (type == 'c' || type == 'C') {
-      result = (num * 9/5)+32;
-      result = result.toFixed(1)+" Farenheit"
+    var t = new Temperatura()
+
+    t.set_valor = (parseFloat(m[1]));
+    t.set_tipo_origen = m[2];
+    t.set_tipo_destino = m[3];
+
+    if ((t.get_tipo_origen() == 'c' || t.get_tipo_origen() == 'C') && ((t.get_tipo_destino() == 'f' || t.get_tipo_destino() == 'F')) {
+      result.set_valor(t.convertirC_F());
+      result.set_tipo_destino("F");
     }
-    else {
-      result = (num - 32)*5/9;
-      result = result.toFixed(1)+" Celsius"
+    else if ((t.get_tipo_origen() == 'c' || t.get_tipo_origen() == 'C') && ((t.get_tipo_destino() == 'k' || t.get_tipo_destino() == 'K')) {
+      result.set_valor(t.convertirC_K());
+      result.set_tipo_destino("K");
     }
-    converted.innerHTML = result;
+    else if ((t.get_tipo_origen() == 'f' || t.get_tipo_origen() == 'F') && ((t.get_tipo_destino() == 'c' || t.get_tipo_destino() == 'C')) {
+      result.set_valor(t.convertirF_C());
+      result.set_tipo_destino("C");
+    }
+    else if ((t.get_tipo_origen() == 'f' || t.get_tipo_origen() == 'F') && ((t.get_tipo_destino() == 'k' || t.get_tipo_destino() == 'K')) {
+      result.set_valor(t.convertirF_K());
+      result.set_tipo_destino("K");
+    }
+    else if ((t.get_tipo_origen() == 'k' || t.get_tipo_origen() == 'K') && ((t.get_tipo_destino() == 'c' || t.get_tipo_destino() == 'C')) {
+      result.set_valor(t.convertirK_C());
+      result.set_tipo_destino("C");
+    }
+    else if ((t.get_tipo_origen() == 'k' || t.get_tipo_origen() == 'K') && ((t.get_tipo_destino() == 'f' || t.get_tipo_destino() == 'F')) {
+      result.set_valor(t.convertirK_F());
+      result.set_tipo_destino("F");
+    }
+    var muestra = result.mostrar();
+    converted.innerHTML = muestra;
   }
   else {
-    converted.innerHTML = "ERROR! Try something like '-4.2C' instead";
+    converted.innerHTML = "ERROR! Try something like '-4.2C to K' or '35C F' instead";
   }
 }
