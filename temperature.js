@@ -1,9 +1,15 @@
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
+
+function Medida (valor, tipo) {
+  this.valor_ = valor;
+  this.tipo_ = tipo;
+}
+
 function calculate() {
   var result;
   var temp = original.value;
   var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
-  
+
   var m = temp.match(regexp);
 
   if (m) {
