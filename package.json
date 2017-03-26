@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "async": "^1.4.0",
+    "fs-extra": "^0.22.1",
+    "gh-pages": "^0.3.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-alpha.3",
+    "cookie-signature": "^1.0.6",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "gitbook": "^2.1.0",
+    "gitbook-cli": "^0.3.4",
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.6.3",
+    "pbkdf2-password": "^1.2.1"
   },
   "devDependencies": {
     "chai": "*",
@@ -13,13 +29,14 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "open tests/index.html # mac OS"
+    "test": "open tests/index.html # mac OS",
+    "build": "npm install && npm i gitbook-cli"
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@bitbucket.org/casiano/pl-grado-temperature-converter.git"
+    "url": "ssh://git@github.com:ULL-ESIT-DSI-1617/programacion-orientada-a-objetos-y-herencia-en-javascript-carlos-david-35l2-p5.git"
   },
-  "author": "Casiano",
-  "license": "ISC",
-  "homepage": "https://github.com/crguezl/ull-etsii-grado-pl-1213-temperature-converter/tree/gh-pages"
+  "author": "Carlos Fernández , David Dorta",
+  "license": "GPL",
+  "homepage": "https://ull-esit-dsi-1617.github.io/programacion-orientada-a-objetos-y-herencia-en-javascript-carlos-david-35l2-p5/"
 }
