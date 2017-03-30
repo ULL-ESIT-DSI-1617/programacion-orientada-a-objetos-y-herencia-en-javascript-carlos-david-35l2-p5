@@ -18,9 +18,7 @@ let bcrypt = require("bcrypt-nodejs");
 let hash = bcrypt.hashSync("amyspassword");
 console.log(`amypassword hashed = ${hash}`);
 let users = {
-  amy : hash,
-  juan : bcrypt.hashSync("juanpassword"),
-  antonio : bcrypt.hashSync("antoniopassword")
+  dsi1617 : bcrypt.hashSync("dsi1617password")
 };
 
 
@@ -91,7 +89,7 @@ app.post('/login', function(req, res){
 //      if(req.body.username in users){
                 req.session.user = req.body.username;
                 req.session.admin = true;
-                res.redirect('/privada');
+                res.redirect('/content/');
         }else{
                 res.send('Login incorrecto');
         }
@@ -106,6 +104,6 @@ var server = app.listen(8089, function () {
   var host = server.address().address
   var port = server.address().port
 
-  console.log('Example app listening at http://%s:%s', host, port)
+  console.log('Example app my server new listening at http://%s:%s', host, port)
 
 })
